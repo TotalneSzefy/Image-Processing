@@ -11,6 +11,7 @@ using System.Windows.Forms;
 
 namespace ImageProcessingv2
 {
+    //tekst testowy czy dziala
     public partial class Form1 : Form
     {
         Image obrazek; //Globalna zmienna do przechowywania obrazu z dysku
