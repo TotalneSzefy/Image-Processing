@@ -34,7 +34,11 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.label1 = new System.Windows.Forms.Label();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.JAS_LABEL = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
             // OPEN_BUTTON
@@ -49,7 +53,7 @@
             // 
             // ZAP_BUTTON
             // 
-            this.ZAP_BUTTON.Location = new System.Drawing.Point(235, 415);
+            this.ZAP_BUTTON.Location = new System.Drawing.Point(74, 415);
             this.ZAP_BUTTON.Name = "ZAP_BUTTON";
             this.ZAP_BUTTON.Size = new System.Drawing.Size(75, 23);
             this.ZAP_BUTTON.TabIndex = 1;
@@ -85,11 +89,43 @@
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.Filter = "JPG|*.jpg|PNG|*.png|BMP|*.bmp";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(155, 420);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(49, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Jasnosc:";
+            // 
+            // trackBar1
+            // 
+            this.trackBar1.LargeChange = 10;
+            this.trackBar1.Location = new System.Drawing.Point(211, 420);
+            this.trackBar1.Maximum = 100;
+            this.trackBar1.Minimum = -100;
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(533, 45);
+            this.trackBar1.TabIndex = 1;
+            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            // 
+            // JAS_LABEL
+            // 
+            this.JAS_LABEL.AutoSize = true;
+            this.JAS_LABEL.Location = new System.Drawing.Point(751, 427);
+            this.JAS_LABEL.Name = "JAS_LABEL";
+            this.JAS_LABEL.Size = new System.Drawing.Size(13, 13);
+            this.JAS_LABEL.TabIndex = 7;
+            this.JAS_LABEL.Text = "0";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.JAS_LABEL);
+            this.Controls.Add(this.trackBar1);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.CLOSE_BUTTON);
             this.Controls.Add(this.ZAP_BUTTON);
@@ -98,7 +134,9 @@
             this.Name = "Form1";
             this.Text = "Obrazkownia";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -110,6 +148,9 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.Label JAS_LABEL;
     }
 }
 

@@ -7,3 +7,12 @@ D:\Programy\ImageProcessingv2\ImageProcessingv2\obj\Debug\ImageProcessingv2.Prop
 D:\Programy\ImageProcessingv2\ImageProcessingv2\obj\Debug\ImageProcessingv2.csproj.GenerateResource.cache
 D:\Programy\ImageProcessingv2\ImageProcessingv2\obj\Debug\ImageProcessingv2.exe
 D:\Programy\ImageProcessingv2\ImageProcessingv2\obj\Debug\ImageProcessingv2.pdb
+C:\Users\johna\Source\Repos\Image-Processing\ImageProcessingv2\ImageProcessingv2\bin\Debug\ImageProcessingv2.exe.config
+C:\Users\johna\Source\Repos\Image-Processing\ImageProcessingv2\ImageProcessingv2\bin\Debug\ImageProcessingv2.exe
+C:\Users\johna\Source\Repos\Image-Processing\ImageProcessingv2\ImageProcessingv2\bin\Debug\ImageProcessingv2.pdb
+C:\Users\johna\Source\Repos\Image-Processing\ImageProcessingv2\ImageProcessingv2\obj\Debug\ImageProcessingv2.csprojAssemblyReference.cache
+C:\Users\johna\Source\Repos\Image-Processing\ImageProcessingv2\ImageProcessingv2\obj\Debug\ImageProcessingv2.Form1.resources
+C:\Users\johna\Source\Repos\Image-Processing\ImageProcessingv2\ImageProcessingv2\obj\Debug\ImageProcessingv2.Properties.Resources.resources
+C:\Users\johna\Source\Repos\Image-Processing\ImageProcessingv2\ImageProcessingv2\obj\Debug\ImageProcessingv2.csproj.GenerateResource.cache
+C:\Users\johna\Source\Repos\Image-Processing\ImageProcessingv2\ImageProcessingv2\obj\Debug\ImageProcessingv2.exe
+C:\Users\johna\Source\Repos\Image-Processing\ImageProcessingv2\ImageProcessingv2\obj\Debug\ImageProcessingv2.pdb
