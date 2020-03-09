@@ -1,0 +1,9 @@
+D:\Programy\ImageProcessingv2\ImageProcessingv2\bin\Debug\ImageProcessingv2.exe.config
+D:\Programy\ImageProcessingv2\ImageProcessingv2\bin\Debug\ImageProcessingv2.exe
+D:\Programy\ImageProcessingv2\ImageProcessingv2\bin\Debug\ImageProcessingv2.pdb
+D:\Programy\ImageProcessingv2\ImageProcessingv2\obj\Debug\ImageProcessingv2.csprojAssemblyReference.cache
+D:\Programy\ImageProcessingv2\ImageProcessingv2\obj\Debug\ImageProcessingv2.Form1.resources
+D:\Programy\ImageProcessingv2\ImageProcessingv2\obj\Debug\ImageProcessingv2.Properties.Resources.resources
+D:\Programy\ImageProcessingv2\ImageProcessingv2\obj\Debug\ImageProcessingv2.csproj.GenerateResource.cache
+D:\Programy\ImageProcessingv2\ImageProcessingv2\obj\Debug\ImageProcessingv2.exe
+D:\Programy\ImageProcessingv2\ImageProcessingv2\obj\Debug\ImageProcessingv2.pdb
