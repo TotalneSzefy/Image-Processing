@@ -15,6 +15,7 @@ namespace ImageProcessingv2
     {
         Image obrazek; //Globalna zmienna do przechowywania obrazu z dysku
         int jasnosc = 0 ;
+        Bitmap obrazAsync;
 
         public Form1()
         {
@@ -39,7 +40,8 @@ namespace ImageProcessingv2
         }
 
         private void ZAP_BUTTON_Click(object sender, EventArgs e)
-        {
+        {//JPG|*.jpg|PNG|*.png|BMP|*.bmp
+            obrazek = pictureBox1.Image;
             if (obrazek != null)
             {
                 DialogResult dr = saveFileDialog1.ShowDialog();//wybierasz plik do ktorego masz go zapisac
@@ -60,45 +62,102 @@ namespace ImageProcessingv2
             if(obrazek != null)
             {
                 JAS_LABEL.Text = trackBar1.Value.ToString(); //ustawianie labelka z wartoscia
-                pictureBox1.Image = zmienJasnosc((Bitmap)obrazek, trackBar1.Value); //zmiana jasonsci
+                
             }
             
         }
 
-        private Bitmap zmienJasnosc(Bitmap obraz, int wartosc)
+        private void ZmienJasnosci(object sender, DoWorkEventArgs e)
         {
-           
-            Bitmap temporaryBitMap = obraz; //kopia na stary obrazek
-            float FinalValue = (float)wartosc / 255.0f;
-            Bitmap newBitmap = new Bitmap(temporaryBitMap.Width, temporaryBitMap.Height); // kopia na nowy obrazek
-            Graphics nowaGrafika = Graphics.FromImage(newBitmap);
-            //poczatek magicznych rzeczy
-            float[][] FloatColorMatrix ={
+            BackgroundWorker worker = sender as BackgroundWorker;
+            obrazAsync = (Bitmap) obrazek.Clone();
+            byte[] LUT = new byte[256];
+            int b = (int) e.Argument;
 
-                    new float[] {1, 0, 0, 0, 0},
+            for (int i = 0; i < LUT.Length; i++)
+            {
+                if ((b + i) > 255)
+                {
+                    LUT[i] = 255;
+                }
+                else if ((b + i) < 0)
+                {
+                    LUT[i] = 0;
+                }
+                else
+                {
+                    LUT[i] = (byte)(b + i);
+                }
+            }
 
-                    new float[] {0, 1, 0, 0, 0},
+            Bitmap bitmap = (Bitmap)obrazAsync.Clone();
+            BitmapData bmpData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadWrite, bitmap.PixelFormat);
+            byte[] pixels = new byte[Math.Abs(bmpData.Stride) * bitmap.Height];
+            System.Runtime.InteropServices.Marshal.Copy(bmpData.Scan0, pixels, 0, pixels.Length);
+            for (int i = 1; i < pixels.Length; i++)
+            {
+                if (worker.CancellationPending)
+                {
+                    e.Cancel = true;
+                    break;
+                }
+                else{
+                    pixels[i] = LUT[pixels[i]];
+                    if (i % 1000 == 0)
+                    {
+                        worker.ReportProgress(i * 100 / pixels.Length);
+                        System.Threading.Thread.Sleep(5);
+                    }
+                }
+            }
 
-                    new float[] {0, 0, 1, 0, 0},
+            if (worker.CancellationPending)
+            {
+                e.Cancel = true;
+            }
+            else
+            {
+                System.Runtime.InteropServices.Marshal.Copy(pixels, 0, bmpData.Scan0, pixels.Length);
+                bitmap.UnlockBits(bmpData);
+                obrazAsync = bitmap;
+            }
+        }
 
-                    new float[] {0, 0, 0, 1, 0},
+        private void ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            progressBar1.Value = e.ProgressPercentage;
+        }
 
-                    new float[] {FinalValue, FinalValue, FinalValue, 1, 1}
-                };
-            ColorMatrix NewColorMatrix = new ColorMatrix(FloatColorMatrix);
+        private void RunWorkerComplete(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Cancelled)
+            {
+                progressBar1.Value = 0;
+            }
+            else
+            {
+                obrazek = obrazAsync;
+                pictureBox1.Image = obrazAsync;
+                progressBar1.Value = 100;
+            }
+            
+        }
 
-            ImageAttributes Attributes = new ImageAttributes();
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (!PracownikWsteczny.IsBusy)
+            {
+                //Bitmap bitmapa = (Bitmap) pictureBox1.Image;
+                PracownikWsteczny.RunWorkerAsync(argument: trackBar1.Value);
+            }
+        }
 
-            Attributes.SetColorMatrix(NewColorMatrix);
-
-            nowaGrafika.DrawImage(temporaryBitMap, new Rectangle(0, 0, temporaryBitMap.Width, temporaryBitMap.Height), 0, 0, temporaryBitMap.Width, temporaryBitMap.Height, GraphicsUnit.Pixel, Attributes);
-
-            Attributes.Dispose();
-
-            nowaGrafika.Dispose();
-
-            return newBitmap;
-            //koniec magicznych rzeczy
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (PracownikWsteczny.IsBusy)
+            {
+                PracownikWsteczny.CancelAsync();
+            }
         }
     }
 }

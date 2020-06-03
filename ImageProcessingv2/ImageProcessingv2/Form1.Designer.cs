@@ -35,8 +35,12 @@
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.label1 = new System.Windows.Forms.Label();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.JAS_LABEL = new System.Windows.Forms.Label();
+            this.PracownikWsteczny = new System.ComponentModel.BackgroundWorker();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
@@ -75,7 +79,7 @@
             // 
             this.pictureBox1.Location = new System.Drawing.Point(12, 44);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(776, 365);
+            this.pictureBox1.Size = new System.Drawing.Size(776, 310);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
@@ -98,6 +102,50 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Jasnosc:";
             // 
+            // JAS_LABEL
+            // 
+            this.JAS_LABEL.AutoSize = true;
+            this.JAS_LABEL.Location = new System.Drawing.Point(751, 427);
+            this.JAS_LABEL.Name = "JAS_LABEL";
+            this.JAS_LABEL.Size = new System.Drawing.Size(13, 13);
+            this.JAS_LABEL.TabIndex = 7;
+            this.JAS_LABEL.Text = "0";
+            // 
+            // PracownikWsteczny
+            // 
+            this.PracownikWsteczny.WorkerReportsProgress = true;
+            this.PracownikWsteczny.WorkerSupportsCancellation = true;
+            this.PracownikWsteczny.DoWork += new System.ComponentModel.DoWorkEventHandler(this.ZmienJasnosci);
+            this.PracownikWsteczny.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.ProgressChanged);
+            this.PracownikWsteczny.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.RunWorkerComplete);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(401, 389);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Start";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(482, 389);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 11;
+            this.button2.Text = "Stop";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(12, 360);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(776, 23);
+            this.progressBar1.TabIndex = 12;
+            // 
             // trackBar1
             // 
             this.trackBar1.LargeChange = 10;
@@ -109,20 +157,14 @@
             this.trackBar1.TabIndex = 1;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
-            // JAS_LABEL
-            // 
-            this.JAS_LABEL.AutoSize = true;
-            this.JAS_LABEL.Location = new System.Drawing.Point(751, 427);
-            this.JAS_LABEL.Name = "JAS_LABEL";
-            this.JAS_LABEL.Size = new System.Drawing.Size(13, 13);
-            this.JAS_LABEL.TabIndex = 7;
-            this.JAS_LABEL.Text = "0";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 470);
+            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.JAS_LABEL);
             this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.label1);
@@ -149,8 +191,12 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.Label JAS_LABEL;
+        private System.ComponentModel.BackgroundWorker PracownikWsteczny;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.TrackBar trackBar1;
     }
 }
 
